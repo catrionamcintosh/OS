@@ -356,6 +356,9 @@ void read_incompleteblock(int block, char* buffer, int offset, int numBytes)
     free(blockData); 
 }
 
+/*
+* Read characters from disk into buffer
+*/
 int sfs_fread(int fd, char* buffer, int size)
 {
     // Check to see if file is open
