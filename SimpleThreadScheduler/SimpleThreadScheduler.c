@@ -56,7 +56,7 @@ int waitQueue_empty = 0;
 int numTasks = 0; //number of tasks currently running in scheduler
 int MAX_TASKS = 30;
 
-
+/*Schedules operations on CPU*/
 void *CEXEC_scheduler()
 {
     struct timespec time1, time2;
@@ -123,6 +123,7 @@ void *CEXEC2_init()
     swapcontext(&parent, &cexec2_context); 
 }
 
+/*Schedules operations requiring input*/
 void *IEXEC_scheduler()
 {
     struct timespec time1, time2;
@@ -291,10 +292,9 @@ void sut_init()
     
     pthread_mutex_init(&ioLck, NULL);
 }
-
+/*Create task to be put on CPU*/
 bool sut_create(sut_task_f fn)
 {
-    //Copied from YAUThreads.c
     //Create user level thread
     threaddesc *tdescptr;
 
@@ -382,6 +382,7 @@ void sut_exit()
     }
 }
 
+/*function to open a file*/
 int sut_open(char *dest)
 {
     //Get context currently running on CEXEC
@@ -430,6 +431,7 @@ int sut_open(char *dest)
     
 }
 
+/* Function to write to a file */
 void sut_write(int fd, char *buf, int size)
 {
     //Get context currently running on CEXEC
@@ -465,6 +467,7 @@ void sut_write(int fd, char *buf, int size)
     }
 }
 
+/* Function to close a file */
 void sut_close(int fd)
 {
     //printf("Entered sut_close\n");
@@ -499,6 +502,7 @@ void sut_close(int fd)
 
 }
 
+/* Function to read a file */
 char *sut_read(int fd, char *buf, int size)
 {
     //printf("Enter sut_read\n");
