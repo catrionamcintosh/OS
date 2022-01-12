@@ -4,7 +4,7 @@
 #include "fileDescriptorTable.h"
 #include "freeBitMap.h"
 #include "inode.h"
-#include "sfs_api.h"
+#include "api.h"
 #include "superblock.h"
 
 #include <stdio.h>
